@@ -133,19 +133,12 @@ function. See the documentation for `par`.)
 
 <u>**Answer**</u>: 
 ```{r clt, out.width = "600px", fig.align="center", fig.cap=c("CLT PLOT")}
-# Function to perform trials and calculate means
 repeat_mean_calculation <- function(n, trials = 10000) {
   means <- replicate(trials, mean(generate_data(n)))
   return(means)
 }
-
-# Set up the plot area
 par(mfrow = c(2, 3), mar = c(4, 4, 2, 1))
-
-# n values to iterate over
 n_values <- c(1, 2, 3, 5, 10, 100)
-
-# Perform trials and plot histograms
 for (n in n_values) {
   means <- repeat_mean_calculation(n)
   hist(means, breaks = 100, main = paste("n =", n), xlab = "Empirical Means", ylab = "Frequency")
