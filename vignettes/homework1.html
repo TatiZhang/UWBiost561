@@ -1574,19 +1574,12 @@ the title of the plot, and the plot layout.
 the <code>mar</code> and <code>mfrow</code> arguments, as well as the <code>paste</code>
 function. See the documentation for <code>par</code>.)</p>
 <p><u><strong>Answer</strong></u>:</p>
-<pre class="r"><code># Function to perform trials and calculate means
-repeat_mean_calculation &lt;- function(n, trials = 10000) {
+<pre class="r"><code>repeat_mean_calculation &lt;- function(n, trials = 10000) {
   means &lt;- replicate(trials, mean(generate_data(n)))
   return(means)
 }
-
-# Set up the plot area
 par(mfrow = c(2, 3), mar = c(4, 4, 2, 1))
-
-# n values to iterate over
 n_values &lt;- c(1, 2, 3, 5, 10, 100)
-
-# Perform trials and plot histograms
 for (n in n_values) {
   means &lt;- repeat_mean_calculation(n)
   hist(means, breaks = 100, main = paste(&quot;n =&quot;, n), xlab = &quot;Empirical Means&quot;, ylab = &quot;Frequency&quot;)
@@ -1616,38 +1609,61 @@ data instead of the cell-level data.</p>
 <pre class="r"><code>df &lt;- read.csv(&quot;https://raw.githubusercontent.com/linnykos/561_s2024_public/main/homework1/sea-ad.csv&quot;)
 
 head(df)
-#&gt;     Donor.ID Age.at.Death    Sex APOE4.Status Cognitive.Status Last.CASI.Score
-#&gt; 1 H19.33.004           80 Female            N      No dementia              85
-#&gt; 2 H20.33.001           82   Male            N      No dementia              97
-#&gt; 3 H20.33.002          90+ Female            N      No dementia              93
-#&gt; 4 H20.33.004           86   Male            Y         Dementia              80
-#&gt; 5 H20.33.005          90+ Female            N      No dementia              94
-#&gt; 6 H20.33.008          90+ Female            Y      No dementia              92
-#&gt;      Braak
-#&gt; 1 Braak IV
-#&gt; 2 Braak IV
-#&gt; 3 Braak IV
-#&gt; 4  Braak V
-#&gt; 5 Braak IV
-#&gt; 6  Braak V
+#&gt;     Donor.ID Age.at.Death    Sex
+#&gt; 1 H19.33.004           80 Female
+#&gt; 2 H20.33.001           82   Male
+#&gt; 3 H20.33.002          90+ Female
+#&gt; 4 H20.33.004           86   Male
+#&gt; 5 H20.33.005          90+ Female
+#&gt; 6 H20.33.008          90+ Female
+#&gt;   APOE4.Status Cognitive.Status
+#&gt; 1            N      No dementia
+#&gt; 2            N      No dementia
+#&gt; 3            N      No dementia
+#&gt; 4            Y         Dementia
+#&gt; 5            N      No dementia
+#&gt; 6            Y      No dementia
+#&gt;   Last.CASI.Score    Braak
+#&gt; 1              85 Braak IV
+#&gt; 2              97 Braak IV
+#&gt; 3              93 Braak IV
+#&gt; 4              80  Braak V
+#&gt; 5              94 Braak IV
+#&gt; 6              92  Braak V
 
 summary(df)
-#&gt;    Donor.ID         Age.at.Death           Sex            APOE4.Status      
-#&gt;  Length:84          Length:84          Length:84          Length:84         
-#&gt;  Class :character   Class :character   Class :character   Class :character  
-#&gt;  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-#&gt;                                                                             
-#&gt;                                                                             
-#&gt;                                                                             
-#&gt;                                                                             
-#&gt;  Cognitive.Status   Last.CASI.Score    Braak          
-#&gt;  Length:84          Min.   :66.00   Length:84         
-#&gt;  Class :character   1st Qu.:80.00   Class :character  
-#&gt;  Mode  :character   Median :89.00   Mode  :character  
-#&gt;                     Mean   :87.32                     
-#&gt;                     3rd Qu.:95.00                     
-#&gt;                     Max.   :99.00                     
-#&gt;                     NA&#39;s   :15</code></pre>
+#&gt;    Donor.ID         Age.at.Death      
+#&gt;  Length:84          Length:84         
+#&gt;  Class :character   Class :character  
+#&gt;  Mode  :character   Mode  :character  
+#&gt;                                       
+#&gt;                                       
+#&gt;                                       
+#&gt;                                       
+#&gt;      Sex            APOE4.Status      
+#&gt;  Length:84          Length:84         
+#&gt;  Class :character   Class :character  
+#&gt;  Mode  :character   Mode  :character  
+#&gt;                                       
+#&gt;                                       
+#&gt;                                       
+#&gt;                                       
+#&gt;  Cognitive.Status   Last.CASI.Score
+#&gt;  Length:84          Min.   :66.00  
+#&gt;  Class :character   1st Qu.:80.00  
+#&gt;  Mode  :character   Median :89.00  
+#&gt;                     Mean   :87.32  
+#&gt;                     3rd Qu.:95.00  
+#&gt;                     Max.   :99.00  
+#&gt;                     NA&#39;s   :15     
+#&gt;     Braak          
+#&gt;  Length:84         
+#&gt;  Class :character  
+#&gt;  Mode  :character  
+#&gt;                    
+#&gt;                    
+#&gt;                    
+#&gt; </code></pre>
 <p>Here are brief descriptions of each variable:</p>
 <ul>
 <li><code>Donor.ID</code>: The anonymized ID of the donor who donated their brain to AD research</li>
@@ -1711,22 +1727,38 @@ Figure 3: The intended output of Question 3E.
 informative than the summary shown at the start of Question 3.</p>
 <p><u><strong>Answer</strong></u>:</p>
 <pre class="r"><code>summary(df)
-#&gt;    Donor.ID          Age.at.Death       Sex     APOE4.Status
-#&gt;  Length:84          Min.   :65.00   Female:51   N:59        
-#&gt;  Class :character   1st Qu.:83.75   Male  :33   Y:25        
-#&gt;  Mode  :character   Median :90.00                           
-#&gt;                     Mean   :86.26                           
-#&gt;                     3rd Qu.:90.00                           
-#&gt;                     Max.   :90.00                           
-#&gt;                                                             
-#&gt;     Cognitive.Status Last.CASI.Score       Braak   
-#&gt;  Dementia   :42      Min.   :66.00   Braak 0  : 2  
-#&gt;  No dementia:42      1st Qu.:80.00   Braak II : 4  
-#&gt;                      Median :89.00   Braak III: 6  
-#&gt;                      Mean   :87.32   Braak IV :23  
-#&gt;                      3rd Qu.:95.00   Braak V  :34  
-#&gt;                      Max.   :99.00   Braak VI :15  
-#&gt;                      NA&#39;s   :15</code></pre>
+#&gt;    Donor.ID          Age.at.Death  
+#&gt;  Length:84          Min.   :65.00  
+#&gt;  Class :character   1st Qu.:83.75  
+#&gt;  Mode  :character   Median :90.00  
+#&gt;                     Mean   :86.26  
+#&gt;                     3rd Qu.:90.00  
+#&gt;                     Max.   :90.00  
+#&gt;                                    
+#&gt;      Sex     APOE4.Status
+#&gt;  Female:51   N:59        
+#&gt;  Male  :33   Y:25        
+#&gt;                          
+#&gt;                          
+#&gt;                          
+#&gt;                          
+#&gt;                          
+#&gt;     Cognitive.Status Last.CASI.Score
+#&gt;  Dementia   :42      Min.   :66.00  
+#&gt;  No dementia:42      1st Qu.:80.00  
+#&gt;                      Median :89.00  
+#&gt;                      Mean   :87.32  
+#&gt;                      3rd Qu.:95.00  
+#&gt;                      Max.   :99.00  
+#&gt;                      NA&#39;s   :15     
+#&gt;        Braak   
+#&gt;  Braak 0  : 2  
+#&gt;  Braak II : 4  
+#&gt;  Braak III: 6  
+#&gt;  Braak IV :23  
+#&gt;  Braak V  :34  
+#&gt;  Braak VI :15  
+#&gt; </code></pre>
 <p>The summary here (in Question 3E) is more informative because it provides a breakdown of categorical data (e.g., counts of Sex, APOE4.Status, Cognitive.Status, and Braak levels), showing the distribution across different categories, in addition to the numerical summaries for variables like Age.at.Death and Last.CASI.Score.<br />
 </p>
 <p><u><strong>Question 3F</strong></u>: Using the <code>table()</code> function, display the relation
