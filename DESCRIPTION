@@ -1,16 +1,20 @@
 Package: UWBiost561
-Title: What the Package Does (One Line, Title Case)
+Title: Maximal Partial Clique in Graphs
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Tati", "Zhang", email = "wenjiz1@uw.edu", role = c("aut", "cre"))
+Description: Provides tools for detecting maximal partial cliques in adjacency matrices, 
+    suitable for use in bioinformatics and network analysis. The package implements 
+    functions to generate synthetic graphs with predefined properties, compute maximal 
+    partial cliques based on density thresholds, and validate graph properties. The 
+    implementation focuses on educational purposes, illustrating computational techniques 
+    in graph theory as applied to biological data.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    network
 VignetteBuilder: knitr
