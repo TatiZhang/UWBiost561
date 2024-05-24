@@ -81,12 +81,4 @@ run_simulation <- function(levels_n, num_trials, alpha_vec, time_limit = 15) {
               session_info = session_info))
 }
 
-# Helper function to calculate edge density
-calculate_edge_density <- function(clique_indices, adj_mat) {
-  num_nodes <- length(clique_indices)
-  if (num_nodes <= 1) return(1)  # Single-node case returns density of 1
-  subgraph <- adj_mat[clique_indices, clique_indices]
-  num_edges <- (sum(subgraph) - num_nodes) / 2  # Exclude self-loops
-  max_edges <- num_nodes * (num_nodes - 1) / 2
-  return(num_edges / max_edges)
-}
+
