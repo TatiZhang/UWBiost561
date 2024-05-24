@@ -7,7 +7,7 @@
 #' @param alpha_vec A vector of numeric values representing different edge densities for the partial clique.
 #' @param time_limit A numeric value representing the maximum time allowed for each implementation to run (in seconds). Default is 15.
 #'
-#' @return A nested list containing the results of the simulation study for each level, trial, and method.
+#' @return A list containing the results of the simulation study (`level_trial_list`), the alpha values used (`alpha_vec`), the date of the run (`date_of_run`), and the session information (`session_info`).
 #'
 #' @details The function generates random adjacency matrices using the generate_partial_clique function, runs each of the 25 implementations of compute_maximal_partial_clique on these matrices, and stores the results.
 #'
@@ -15,10 +15,6 @@
 #' @export
 run_simulation <- function(levels_n, num_trials, alpha_vec, time_limit = 15) {
   imp_numbers <- 1:25
-  num_trials <- 5
-  alpha_vec <- c(0.5, 0.95)
-  levels_n <-10
-
 
   level_trial_list <- lapply(alpha_vec, function(alpha) {
     print(paste("Value of alpha:", alpha))
@@ -29,7 +25,7 @@ run_simulation <- function(levels_n, num_trials, alpha_vec, time_limit = 15) {
 
       n_results <- lapply(levels_n, function(n) {
         # generate the data
-        data <- generate_partial_clique(n = 10, clique_fraction = 0.5, clique_edge_density = 0.5)
+        data <- generate_partial_clique(n = n, clique_fraction = 0.5, clique_edge_density = 0.5)
         adj_mat <- data$adj_mat
 
         result_list <- lapply(imp_numbers, function(imp_number) {
@@ -79,10 +75,10 @@ run_simulation <- function(levels_n, num_trials, alpha_vec, time_limit = 15) {
   date_of_run <- Sys.time()
   session_info <- devtools::session_info()
 
-  save(level_trial_list, alpha_vec, date_of_run, session_info,
-       file = "simulation_results.RData")
-
-  return(level_trial_list)
+  return(list(level_trial_list = level_trial_list,
+              alpha_vec = alpha_vec,
+              date_of_run = date_of_run,
+              session_info = session_info))
 }
 
 # Helper function to calculate edge density
