@@ -75,16 +75,33 @@ run_simulation <- function(levels_n, num_trials, alpha_vec, time_limit = 15) {
   date_of_run <- Sys.time()
   session_info <- devtools::session_info()
 
-  return(simulation_results<- list(level_trial_list = level_trial_list,
+  save(level_trial_list, alpha_vec, date_of_run, session_info,
+       file = "simulation_results.RData")
+
+  return(list(level_trial_list = level_trial_list,
               alpha_vec = alpha_vec,
               date_of_run = date_of_run,
               session_info = session_info))
 }
 
-date_of_run <- Sys.time()
-session_info <- devtools::session_info()
+# Helper function to calculate edge density
+calculate_edge_density <- function(clique_indices, adj_mat) {
+  num_nodes <- length(clique_indices)
+  if (num_nodes <= 1) return(1)  # Single-node case returns density of 1
+  subgraph <- adj_mat[clique_indices, clique_indices]
+  num_edges <- (sum(subgraph) - num_nodes) / 2  # Exclude self-loops
+  max_edges <- num_nodes * (num_nodes - 1) / 2
+  return(num_edges / max_edges)
+}
 
-save(level_trial_list, # save your results
-     alpha_vec, # save which alphas you used (for convenience)
-     date_of_run, session_info,
-     file = "~/hw4_simulation.RData")
+# Example usage
+levels_n <- c(10, 20, 30, 40, 50)
+num_trials <- 5
+alpha_vec <- c(0.5, 0.75, 0.95)
+time_limit <- 30
+
+# Run the simulation study
+simulation_results <- run_simulation(levels_n, num_trials, alpha_vec, time_limit)
+
+# Print a summary of the results
+str(simulation_results)
