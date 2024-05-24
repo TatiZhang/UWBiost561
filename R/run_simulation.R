@@ -81,4 +81,10 @@ run_simulation <- function(levels_n, num_trials, alpha_vec, time_limit = 15) {
               session_info = session_info))
 }
 
+date_of_run <- Sys.time()
+session_info <- devtools::session_info()
 
+save(level_trial_list, # save your results
+     alpha_vec, # save which alphas you used (for convenience)
+     date_of_run, session_info,
+     file = "~/hw4_simulation.RData")

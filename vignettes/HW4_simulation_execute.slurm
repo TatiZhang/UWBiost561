@@ -8,3 +8,5 @@
 #SBATCH --mem-per-cpu=10gb
 
 R CMD BATCH --no-save --no-restore HW4_simulation_execute.R
+
+
