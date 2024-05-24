@@ -75,7 +75,7 @@ run_simulation <- function(levels_n, num_trials, alpha_vec, time_limit = 15) {
   date_of_run <- Sys.time()
   session_info <- devtools::session_info()
 
-  return(list(level_trial_list = level_trial_list,
+  return(simulation_results<- list(level_trial_list = level_trial_list,
               alpha_vec = alpha_vec,
               date_of_run = date_of_run,
               session_info = session_info))
@@ -90,9 +90,3 @@ calculate_edge_density <- function(clique_indices, adj_mat) {
   max_edges <- num_nodes * (num_nodes - 1) / 2
   return(num_edges / max_edges)
 }
-
-# Run the simulation study
-simulation_results <- run_simulation(levels_n, num_trials, alpha_vec, time_limit)
-
-# Print a summary of the results
-str(simulation_results)
