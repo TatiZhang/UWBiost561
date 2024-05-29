@@ -1,0 +1,124 @@
+---
+title: "BIOST 561: Final project"
+date: "Due date: 7:00pm on Friday, June 7th, 2024"
+output: 
+  bookdown::html_document2:
+    number_sections: false
+    toc: true
+    toc_float:
+      toc_collapsed: true
+    theme: united
+vignette: >
+  %\VignetteIndexEntry{BIOST 561: Final project}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+set.seed(10)
+library(testthat)
+```
+
+# Directions
+
+Please read all the directions before starting, and please post on Canvas Discussions if you have questions (for example, regarding the specifications or if your progress on the final project meets the intended criteria)
+
+- You need to make a PkgDown website for an R package
+- You do not need to submit any R Markdown files (neither on Canvas nor in your `vignettes`) for your final project
+- You do not need to add me (Kevin) as a GitHub collaborator to your R package's GitHub, since your GitHub will necessarily be public (i.e., viewable to the entire internet) in order to have a PkgDown website
+- Please email me your PkgDown URL (since you might be working on a PkgDown for an R package that isn't the `UWBiost561` package). I will reply to your email to confirm receipt of your submission.
+
+<u>**Reminder**</u>: Remember, this course is Credit/No-Credit, and you might have other courses with finals or graded projects. As such, please budget your time appropriately for all your commitments. If you feel overwhelmed by the end of the quarter, please feel free to simplify the scope of this course's final project. (I still encourage you to complete your intended vision for your package when you have more time after the quarter though!) <mark> You will get full credit for this final project as long as you have all the specified ingredients below.</mark>
+
+
+# Final project overview
+
+For this project, you'll be making a PkgDown website that looks like [https://linnykos.github.io/561_s2024_example/](https://linnykos.github.io/561_s2024_example/). Briefly, this will involve:
+
+- 1. A R package that includes R code (and possibly code in other languages) to solve a problem. The problem can be as large or as small in scope as you want.
+- 2. Documentation for all your exported R functions.
+- 3. A vignette that explains how to use some of your R functions. 
+- 4. A `README` page that explains the purpose of the R package.
+- 5. A public PkgDown website for this R package that is hosted via GitHub. (You can take the website down once your grade for this course has been submitted.)
+
+Optionally, I would encourage you to do the following (but it's not required):
+
+- Unit tests for all your R functions.
+
+It is 100% okay for you to "reuse" R code for another course (either past or current, even from your previous institution).
+Ideally, if you choose
+a coding project you care about as the foundation for this final project, 
+you already have all the R code, and all that remains is "everything else."
+You do not need to have many functions or complex functions.
+Realistically, you can use a meaningful subset of functions in your existing code base
+for this project.
+
+<u>**Note**</u>: Your PkgDown website will be <u>**public**</u>. If you are worried about this for your intended project (either because you are afraid of being "scooped" if you are working on a critically sensitive research project or using sensitive data), I would ask you to defer on the side of caution and instead, use your `UWBiost561` R project for your final. (In general, though, I don't expect most of your R packages to be that sensitive. Feel free to discuss this with me privately if you are concerned.). Also, once I'm done grading your final project, you should feel free to immediately take down your PkgDown website.
+
+# Final project specifications
+
+<u>**Specifications for R package itself:**</u>
+
+- Your PkgDown is for your R package, which should follow a very similar file structure to your `UWBiost561` R package. This means your R package needs an `R` folder, a `vignettes` folder, a `DESCRIPTION` file, etc. 
+  - You should refer to the previous homeworks to remember how to set up an R package.
+- You will need to make a public GitHub repository for your R package.
+- Your R package should pass `devtools::check()` (or else your PkgDown website might not build correctly)
+
+<u>**Specifications for the documentation:**</u>
+
+- You need at least 3 functions that are exported (i.e., `@export` in the ROxygen) that have documentation that includes:
+  - the function name,
+  - the function description,
+  - the descriptions of the inputs, 
+  - the description of the outputs, 
+  - a small example of using the function 
+
+<u>**Specifications for the vignette:**</u>
+
+- The vignette should be "self-contained." This means it should include explicit directions on downloading data suitable for the vignette, or your package has an R function to generate synthetic data.
+- When PkgDown "builds" your website, it will literally try running all the code in your vignette. Therefore, it is important that you do <u>**not**</u> load any data files that are local to your laptop in your vingette (or else PkgDown will not be able to run your vignette). In this case, you might want to host your dataset (or a small subset of your dataset) on this GitHub repository itself. (Remember, try to keep all datasets under 10 megabytes.)
+  - Personally, I think it's much easier to write a simple function that simulates data from scratch for your vignette instead of figuring out how to host your dataset.
+- At least 3 of the documented functions should be used in this vignette. (For example, a typical choice would be one function that you wrote that generates simulated data, one function that you wrote that estimates parameters based on the simulated data, and one function that plots or summarizes the results of your estimates)
+
+<u>**Specifications for the README:**</u>
+
+- This is a text file that goes into the top-level of your `R` package. (It's in the same place as the `DESCRIPTION` and `NAMESPACE` files.) 
+  - See [https://raw.githubusercontent.com/linnykos/561_s2024_example/main/README.md](https://raw.githubusercontent.com/linnykos/561_s2024_example/main/README.md) as an example
+- This should include the URLs to 1) your GitHub package (i.e., the website to see the files for the R package) and 2) your PkgDown website. 
+  - For example, the former is [https://github.com/linnykos/561_s2024_example](https://github.com/linnykos/561_s2024_example) while the latter is [https://linnykos.github.io/561_s2024_example/](https://linnykos.github.io/561_s2024_example/)
+- This should also include directions on how to install your R package. (The easiest way to do this is to showcase how to install your package using the `devtools::install_github()` function.)
+
+<u>**What a "working" PkgDown website means:**</u>
+
+Your PkgDown website should have the following pages upon completion:
+
+- A landing page (analogous to [https://linnykos.github.io/561_s2024_example/](https://linnykos.github.io/561_s2024_example/))
+- A "Get started" (or similarly named) webpage (analogous to [https://linnykos.github.io/561_s2024_example/articles/UW561S2024Example.html](https://linnykos.github.io/561_s2024_example/articles/UW561S2024Example.html)). This is vignette that is generated based on the R Markdown file you include in the `vignettes` folder that is named after your R package (see [https://github.com/linnykos/561_s2024_example/blob/main/vignettes/UW561S2024Example.Rmd](https://github.com/linnykos/561_s2024_example/blob/main/vignettes/UW561S2024Example.Rmd))
+- A "Reference" (or similarly named) webpage (analogous to [https://linnykos.github.io/561_s2024_example/reference/index.html](https://linnykos.github.io/561_s2024_example/reference/index.html)). These are created based on the all the ROxygen documentations you write for your functions in the `R` folder
+
+# (For those of you using the `UWBiost561` package for this project)
+
+If you are planning to use your `UWBiost561` (which is 100% okay), please be aware of the following notes:
+
+- You will need to make your `UWBiost561` package into a <u>**public**</u> repository (since PkgDown will create a website that anyone can see). 
+  - To do this, you will need to go to the Settings page of your GitHub repository. For example, this might be [https://github.com/UW561/UWBiost561/settings](https://github.com/UW561/UWBiost561/settings). Then, you will scroll down to the "Danger Zone" where you want to "Change repository visibility" to "Change to public".
+- The PkgDown will create pages for each vignette in the `vignettes` folder (which currently has your homeworks). Hence, when making the PkgDown, you might want to delete all your HW1 through HW4 vignettes from your `UWBiost561` package. (Don't worry -- since GitHub is a repository, it's not actually "deleted".) As long as you have received a completion for all 4 HWs (i.e., 4 closed GitHub issues from me), you have nothing to worry about. <u>**However**</u>, if you are starting the PkgDown before you have received completion for all 4 HWs, you will need to email me (Kevin) the HW (both the HTML and R Markdown files) that still have to be completed. 
+- Your vignette for the `UWBiost561`'s PkgDown website can be (as a suggestion): 
+  - 1. Showing how to generate a graph with a random partial clique (using your `generate_partial_clique()` function from HW3), 
+  - 2. Showing how to compute the maximal partial clique using any of the `compute_maximal_partial_clique` implementations from HW4 (not necessarily the one you wrote in HW3), 
+  - 3. Showing how to perform a small simulation study using the function you wrote in HW4 Question 2. (This particular simulation study should take less than 3 minutes to run. R needs to re-run the entire simulation every time it wants to knit this vignette to rebuild the website, so you do not want a simulation study that takes too long to run.)
+  - This is a suggestion, though, so you can write whatever vignette you want as long as it showcases 3 different functions in your `UWBiost561` package
+  - You can include new functions into your `UWBiost561` package. For instance, you can make your plotting function in HW2 Question 3 into a function in your `UWBiost561` package and showcase it in this vignette.
+
+# Useful references
+
+Our class's Google Docs for additional notes on how to make your PkgDown is: [https://docs.google.com/document/d/1SqaCv2m4uvvwvfcc48FGSxW5O1Z53hXKw8QJofAUBrk/edit?usp=sharing](https://docs.google.com/document/d/1SqaCv2m4uvvwvfcc48FGSxW5O1Z53hXKw8QJofAUBrk/edit?usp=sharing). 
+
+- [https://www.youtube.com/watch?v=IRtOORWdKGI](https://www.youtube.com/watch?v=IRtOORWdKGI): This YouTube video contains essentially all the steps you need to follow
+- [https://psyteachr.github.io/intro-r-pkgs/07-pkgdown.html](https://psyteachr.github.io/intro-r-pkgs/07-pkgdown.html): This is the website that the YouTube video above is based off of
+- [https://pkgdown.r-lib.org/articles/pkgdown.html](https://pkgdown.r-lib.org/articles/pkgdown.html)
+- [https://www.r-bloggers.com/2017/08/building-a-website-with-pkgdown-a-short-guide/](https://www.r-bloggers.com/2017/08/building-a-website-with-pkgdown-a-short-guide/)

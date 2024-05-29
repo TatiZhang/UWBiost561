@@ -13,6 +13,7 @@
 #'
 #' @import UWBiost561
 #' @export
+# Define the run_simulation function
 run_simulation <- function(levels_n, num_trials, alpha_vec, time_limit = 15) {
   imp_numbers <- 1:25
 
@@ -93,15 +94,3 @@ calculate_edge_density <- function(clique_indices, adj_mat) {
   max_edges <- num_nodes * (num_nodes - 1) / 2
   return(num_edges / max_edges)
 }
-
-# Example usage
-levels_n <- c(10, 20, 30, 40, 50)
-num_trials <- 5
-alpha_vec <- c(0.5, 0.75, 0.95)
-time_limit <- 30
-
-# Run the simulation study
-simulation_results <- run_simulation(levels_n, num_trials, alpha_vec, time_limit)
-
-# Print a summary of the results
-str(simulation_results)

@@ -16,7 +16,7 @@ run_simulation(levels_n, num_trials, alpha_vec, time_limit = 15)
 \item{time_limit}{A numeric value representing the maximum time allowed for each implementation to run (in seconds). Default is 15.}
 }
 \value{
-A nested list containing the results of the simulation study for each level, trial, and method.
+A list containing the results of the simulation study (\code{level_trial_list}), the alpha values used (\code{alpha_vec}), the date of the run (\code{date_of_run}), and the session information (\code{session_info}).
 }
 \description{
 This function runs a simulation study to evaluate the performance of 25 different implementations of the compute_maximal_partial_clique function.

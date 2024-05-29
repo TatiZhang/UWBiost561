@@ -1,6 +1,3 @@
-
-library(UWBiost561)
-
 # Define the simulation parameters
 levels_n <- c(10, 20, 30, 40, 50) # Different sizes of the graph
 num_trials <- 5                   # Number of trials for each combination
