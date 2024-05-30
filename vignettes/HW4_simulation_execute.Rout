@@ -1,0 +1,60 @@
+
+R version 4.2.3 (2023-03-15) -- "Shortstop Beagle"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(UWBiost561)
+> # Define the simulation parameters
+> levels_n <- c(10, 20, 30, 40, 50) # Different sizes of the graph
+> num_trials <- 5                   # Number of trials for each combination
+> alpha_vec <- c(0.5, 0.75, 0.95)   # Different edge densities for the partial clique
+> time_limit <- 30                  # Maximum time allowed for each implementation to run (in seconds)
+> 
+> # Run the simulation study
+> simulation_results <- run_simulation(levels_n, num_trials, alpha_vec, time_limit)
+[1] "Value of alpha: 0.5"
+[1] "Working on trial: 1"
+*****************************************************************************************************************************[1] "Working on trial: 2"
+*****************************************************************************************************************************[1] "Working on trial: 3"
+*****************************************************************************************************************************[1] "Working on trial: 4"
+*****************************************************************************************************************************[1] "Working on trial: 5"
+*****************************************************************************************************************************[1] "===="
+[1] "Value of alpha: 0.75"
+[1] "Working on trial: 1"
+*****************************************************************************************************************************[1] "Working on trial: 2"
+*****************************************************************************************************************************[1] "Working on trial: 3"
+*****************************************************************************************************************************[1] "Working on trial: 4"
+*****************************************************************************************************************************[1] "Working on trial: 5"
+*****************************************************************************************************************************[1] "===="
+[1] "Value of alpha: 0.95"
+[1] "Working on trial: 1"
+*****************************************************************************************************************************[1] "Working on trial: 2"
+*****************************************************************************************************************************[1] "Working on trial: 3"
+*****************************************************************************************************************************[1] "Working on trial: 4"
+*****************************************************************************************************************************[1] "Working on trial: 5"
+*****************************************************************************************************************************[1] "===="
+> 
+> # Save the simulation results to an .RData file
+> save(simulation_results, file = "~/HW4_simulation.RData")
+> 
+> # Optional: print a summary of the results to console
+> print("Simulation study completed. Results have been saved to ~/HW4_simulation.RData.")
+[1] "Simulation study completed. Results have been saved to ~/HW4_simulation.RData."
+> 
+> proc.time()
+     user    system   elapsed 
+15527.302    79.889 15617.341 
