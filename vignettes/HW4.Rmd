@@ -420,7 +420,9 @@ in this R Markdown file.)</span>
 <u>**Question 3E**</u>: Now, on Bayes, there should be at least four new files in the `vignettes` folder due to Question 3A-3D: `HW4_simulation_execute.R`, `HW4_simulation_execute.slurm`, `HW4_simulation_plot.R`, and `HW4_simulation.png`. (There might be many other files, but I am okay with it if there are more files than needed.) Commit and push all these files via Git (using the command line on Bayes) onto GitHub.com (via `git push`), and then pull all these files via Git onto your local laptop. (You can pull either through the command line via `git pull` or the RStudio GUI.)
 
 Finally, include your plot in this R Markdown file. (I'm having you put your plot in your `vignettes` folder and push/pull your `UWBiost561` package because I'm assuming you knit this `HW4.Rmd` file locally on your laptop, but you need to somehow get your plot from Bayes onto your local laptop.)
-
+```{r}
+knitr::include_graphics("/Users/tatithegreat/Documents/UW/BIOST561/UWBiost561/vignettes/HW4_simulation_execute_plot.png")
+```
 # Q4: Describing your final project
 
 <mark>**Intent**: The intent of this question is to make sure you have a plan for the final project.</mark>
@@ -428,6 +430,9 @@ Finally, include your plot in this R Markdown file. (I'm having you put your plo
 I will release the final project specifications (again, which involve making a PkgDown website of any R package of your choosing of any scope) on Canvas. This will be released (at the latest) by May 19th.
 
 Please write (in one to five sentences) what you are thinking of doing for your final project. If your answer hasn't changed since HW3, you can copy-paste your answer from HW3 into this question for HW4.
+
+Answer:\
+I'll be making a Pkgdown webpage for my IdeasCustom package for analyzing gene expression data on individual-level using IDEAS mehtod and decomposed components of Wasserstein-2 distance, that includes functions to arrange gene expression data by donors, initialize distance array lists, compute divergence metrics using the Wasserstein distance, and more.\
 
 # Q5: Feedback (Optional)
 
